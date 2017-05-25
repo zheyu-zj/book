@@ -100,11 +100,11 @@
             }
         },
         created() {
-            this.$http.get('/json/index.json').then((response) => {
-                if (response.status === ERR_OK) {
-                    this.book_list = response.data;
-                }
-            });
+//            this.$http.get('/json/index.json').then((response) => {
+//                if (response.status === ERR_OK) {
+//                    this.book_list = response.data;
+//                }
+//            });
             this.$http.get('/json/newArivals.json').then((response) => {
                 if (response.status === ERR_OK) {
                     this.book_type = response.data;

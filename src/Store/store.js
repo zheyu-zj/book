@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {exchange} from '../api/index'
 
 Vue.use(Vuex)
 
@@ -11,6 +12,9 @@ const state = {
 };
 
 const mutations = {
+    book_list(state, {info}){
+        state.book_list = info;
+    },
     increment (state) {
         state.count++
     },
@@ -20,6 +24,14 @@ const mutations = {
 };
 
 const actions = {
+    bookList({commit,getters}){
+        exchange.bookList({book:getters.book_list}).then(response => {
+            commit({
+                type: 'book_list',
+                info: response.data
+            });
+        })
+    },
     increment: ({commit}) => commit('increment'),
     decrement: ({commit}) => commit('decrement'),
     incrementIfOdd ({commit, state}) {
