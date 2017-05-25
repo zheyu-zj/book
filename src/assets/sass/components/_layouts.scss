@@ -1,0 +1,140 @@
+html, body {
+    background: $backgroundColor;
+}
+
+html, body, #app {
+    font-size: $minFont;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    color: $conFontColor;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: $mainWidth;
+    min-height: 100vh;;
+    margin: $centerAuto;
+    header {
+        height: 148px;
+        background: #fff;
+        .header-logo-a {
+            display: inline-block;
+        }
+        .header-warp {
+            width: $mainWidth;
+            margin: $centerAuto;
+            .el-menu-demo {
+                float: right;
+                margin: 23px 0 22px;
+                height: 55px;
+                padding-right: 25px;
+            }
+            .el-menu {
+                background: #fff;
+            }
+            .el-menu-item {
+                transition: inherit;
+            }
+            .is-active {
+                color: $conFontColor;
+            }
+            .el-menu-item:hover {
+                background: #fff;
+                border-bottom: 0;
+            }
+            .el-icon-menu:before {
+                content: '';
+            }
+            .contact, .online, .enshrine {
+                img {
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+        }
+        .header_logo {
+            margin: 23px 0 22px 55px;
+            height: 55px;
+        }
+        nav {
+            .el-menu-item {
+                text-align: center;
+                height: 48px;
+                line-height: 48px;
+                color: #fff;
+                background: $mainColor;
+                transition: inherit;
+            }
+            .el-menu-item:hover {
+                background: #fff;
+                color: $mainColor;
+                border-bottom: 0;
+            }
+        }
+    }
+    main {
+        flex: 1;
+    }
+    footer {
+        width: $mainWidth;
+        background: #fff;
+        overflow: hidden;
+        margin-top: 30px;
+        .footer {
+            overflow: hidden;
+            padding: 30px 56px 25px;
+        }
+        .footer_left {
+            float: left;
+            .footer_logo {
+                display: block;
+                width: 358px;
+            }
+            p {
+                display: inline-block;
+                width: 120px;
+                height: 40px;
+                margin-top: 10px;
+                color: #4a4a4a;
+                line-height: 20px;
+                a {
+                    color: $mainColor;
+                    text-decoration: none;
+                }
+            }
+        }
+        .footer_right {
+            width: 577px;
+            float: right;
+            h6 {
+                float: left;
+                margin-top: 6px;
+                font-weight: 500;
+            }
+            h6, p {
+                display: inline-block;
+                margin-right: 20px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            p {
+                span {
+                    color: $auxiliaryColor;
+                    font-weight: 100;
+                }
+                line-height: 24px;
+                color: #151515;
+            }
+        }
+        .copyright {
+            clear: both;
+            width: 100%;
+            font-weight: 100;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background: $mainColor;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.component {
+    width: $mainWidth;
+    margin-top: 30px;
+    .leftList {
+        float: left;
+        width: 182px;
+        margin-right: 24px;
+        .el-menu {
+            background: #fff;
+            color: $mainColor;
+        }
+        .el-menu-item-group__title {
+            margin: 0;
+            padding-top: 0;
+            height: 44px;
+            line-height: 44px;
+            background-color: $mainColor;
+            color: #fff;
+        }
+        .el-menu-item, .el-submenu__title {
+            height: 44px;
+            line-height:44px;
+        }
+        .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item:hover, .el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title:hover, .el-menu-item:hover {
+            background: #fff;
+            color: $mainColor;
+        }
+        .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active {
+            color: $mainColor;
+        }
+        .el-menu-item, .el-submenu__title{
+            color: $auxiliaryColor;
+        }
+    }
+    .rightContent{
+        float: right;
+        width:1002px;
+        min-height:100px;
+        background: #F3F3F3;
+        ul{
+            li{
+                float: none;
+                width:100%;
+                height:180px;
+                box-sizing: border-box;
+                list-style: none;
+                background: #fff;
+                padding:20px 40px 40px;
+                overflow: hidden;
+                margin-bottom:20px;
+                &:nth-of-type(2n){
+                    float: none;
+                }
+                div{
+                    height:33px;
+                    margin-bottom:10px;
+                    h3{
+                        float: left;
+                        font-size:$maxFont;
+                        line-height:33px;
+                        color: $conFontColor;
+                    }
+                    a{
+                        float: right;
+                        padding-left:18px;
+                        font-size:$cenFont;
+                        color: $mainColor;
+                    }
+                }
+                p{
+                    color: $auxiliaryColor;
+                    line-height:26px;
+                }
+            }
+        }
+    }
+}
+//导航默认样式修改
+.el-menu--horizontal > .el-menu-item:hover, .el-menu--horizontal > .el-submenu.is-active .el-submenu__title, .el-menu--horizontal > .el-submenu:hover .el-submenu__title {
+    border: 0;
+}
+
+.el-submenu__title {
+    background: $mainColor;
+    color: #fff;
+    text-align: center;
+}
+
+.el-menu--horizontal .el-menu-item:hover, .el-menu--horizontal .el-submenu__title:hover {
+    background: #fff;
+    color: $mainColor;
+}
+
+.el-menu--horizontal .el-submenu .el-submenu__title {
+    height: 48px;
+    line-height: 48px;
+}
+
+.el-menu--horizontal .el-submenu > .el-menu {
+    top: 48px;
+}
+
+.el-menu--horizontal .el-submenu .el-submenu__icon-arrow{
+    color: #fff;
+}

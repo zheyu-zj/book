@@ -1,0 +1,130 @@
+.content {
+    padding: 0 27px 30px;
+    background: #fff;
+    overflow: hidden;
+    .company {
+        margin-top: 30px;
+        overflow: hidden;
+        .live {
+            float: left;
+            width: 565px;
+            height: 325px;
+            .el-carousel__container {
+                height: 300px;
+            }
+        }
+        .introduction {
+            float: left;
+            width: 589px;
+            height: 325px;
+            .title_h2 {
+                text-indent: 25px;
+            }
+            p {
+                box-sizing: border-box;
+                height: 300px;
+                padding: 17px 20px 14px;
+                color: #555;
+                line-height: 36px;
+                border: 1px solid $partingLineColor;
+            }
+        }
+        .news, .down {
+            float: left;
+            width: 565px;
+            height: 325px;
+            overflow: hidden;
+            ul {
+                height: 300px;
+                box-sizing: border-box;
+                padding: 10px 20px;
+                list-style: none;
+                border: 1px solid $partingLineColor;
+                overflow: hidden;
+                li {
+                    height: 40px;
+                    border-bottom: 1px solid $partingLineColor;
+                    a {
+                        display: inline-block;
+                        width: 100%;
+                        font-weight: 200;
+                        text-decoration: none;
+                    }
+                    h6 {
+                        float: left;
+                        color: $conFontColor;
+                        font-weight: 400;
+                    }
+                    time {
+                        float: right;
+                        color: $auxiliaryColor;
+                        font-weight: 200;
+                    }
+                    span {
+                        float: right;
+                        color: $mainColor;
+                        font-weight: 200;
+                        text-decoration: none;
+                    }
+                    h6, time, span {
+                        line-height: 38px;
+                    }
+                    &:last-of-type {
+                        border: 0;
+                    }
+                }
+            }
+        }
+        .news {
+            margin-right: 24px;
+        }
+    }
+    .books {
+        clear: both;
+        margin-top: 30px;
+        overflow: hidden;
+        ul {
+            width: $mainWidth;
+            overflow: hidden;
+            li {
+                display: inline-block;
+                margin-right: 23px;
+                a {
+                    text-decoration: none;
+                }
+                .books_box {
+                    width: 271px;
+                    height: 200px;
+                    border: 1px solid $partingLineColor;
+                    box-sizing: border-box;
+                    text-align: center;
+                    img {
+                        display: inline-block;
+                        width: 172px;
+                        height: 172px;
+                        margin: 14px 0;
+                    }
+                }
+                p {
+                    color: $conFontColor;
+                    text-align: center;
+                    line-height: 24px;
+                    span {
+                        color: $mainColor;
+                    }
+                }
+            }
+        }
+    }
+    .title_h2 {
+        height: 25px;
+        line-height: 25px;
+        color: $mainColor;
+        a {
+            float: right;
+            color: $auxiliaryColor;
+            text-decoration: none;
+            font-weight: 300;
+        }
+    }
+}
