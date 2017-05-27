@@ -3,7 +3,7 @@
         <div class="leftList">
             <el-menu default-active="/newArivals" class="el-menu-vertical-demo" router>
                 <el-menu-item-group title="图书分类">
-                    <el-menu-item v-for="(book_warp, key, index) in book_types" :index="`/newArivals/${key}`" :key="index">{{ book_warp.bookTitle }}</el-menu-item>
+                    <el-menu-item v-for="(book_warp, key, index) in book_type" :index="`/newArivals/${key}`" :key="index">{{ book_warp.bookTitle }}</el-menu-item>
                 </el-menu-item-group>
             </el-menu>
             <div class="newArivals_warp">
@@ -24,8 +24,8 @@
             </div>
         </div>
         <div class="newArivalsRight">
-            <ul v-for="bookTitle in bookwarp">
-                <li v-for="bookContent in bookTitle.data">
+            <ul>
+                <li v-for="bookContent in bookWarp">
                     <img :src="bookContent.src" alt="">
                     <div>
                         <h6>{{ bookContent.title }}</h6>
@@ -41,32 +41,37 @@
 </template>
 
 <script>
-    const ERR_OK = 200;
+    import {mapState} from 'vuex';
+
     export default {
         data() {
             return {
-                bookwarp:[],
-                book_types: {},
+                bookWarp: {},
                 input: '',
                 radio: '1'
             }
         },
-        created() {
-            this.$http.get('/json/newArivals.json').then((response) => {
-                if (response.status === ERR_OK) {
-                    this.book_types = response.data;
-                    this.bookwarp = this.book_types
-                    console.log(this.bookwarp)
-                }
-            });
+        computed: {
+            ...mapState({
+                book_type: state => state.bookList.newBookShelves
+            })
         },
-//        watch: {
-//            '$route' (to, from) {
-//                if (to.params.id !== from.params.id) {
-//                    this.bookTitle = this.book_types[to.params.id].data;
-//                }
-//            }
-//        }
+        methods: {
+            fetchData() {
+                let storage = window.localStorage;
+                if (storage.newBookShelves) {
+                    this.bookWarp = JSON.parse(storage.getItem('newBookShelves'))[this.$route.params.id].data;
+                } else {
+                    this.bookWarp = this.book_type[this.$route.params.id].data;
+                }
+            }
+        },
+        created() {
+            this.fetchData();
+        },
+        watch: {
+            '$route': 'fetchData'
+        }
     }
 </script>
 

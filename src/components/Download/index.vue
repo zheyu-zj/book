@@ -22,38 +22,35 @@
 </template>
 
 <script>
-    const ERR_OK = 200;
+    import {mapState} from 'vuex';
+
     export default {
-        props: ['book_list'],
         data() {
             return {
                 book_content: {},
                 index: '',
             }
         },
+        computed: {
+            ...mapState({
+                book_list: state => state.bookList.downloadTheBibliography
+            })
+        },
+        methods: {
+            fetchData(){
+                let storage = window.localStorage;
+                if(storage.downloadTheBibliography){
+                    this.book_content = JSON.parse(storage.getItem('downloadTheBibliography'))[this.$route.params.id].data;
+                }else{
+                    this.book_content = this.book_list[this.$route.params.id].data;
+                }
+            },
+        },
         created() {
-            console.log(this.$store)
-//            this.$http.get('/json/index.json').then((response) => {
-//                if (response.status === ERR_OK) {
-//                    this.book_list = response.data;
-//            let str = this.$route.path.split("/");
-//                    this.book_content = this.book_list[str[str.length-1]].data
-//            console.log(str)
-//                }
-//            });
+            this.fetchData();
         },
         watch: {
-            '$route' (path) {
-                console.log(this.$route.path)
-            },
-            '$route' (to, from) {
-                if (to.params.id !== from.params.id) {
-                    this.book_content = this.book_list[to.params.id].data;
-                } else {
-                    let str = this.$route.path.split("/");
-                    this.book_content = this.book_list[str[str.length - 1]].data
-                }
-            }
+            '$route': 'fetchData',
         }
     }
 </script>
