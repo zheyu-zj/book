@@ -1,7 +1,7 @@
 <template>
     <div class="component">
         <div class="leftList">
-            <el-menu default-active="/Download" class="el-menu-vertical-demo" router>
+            <el-menu :default-active="`/download/${this.$route.params.id}`" class="el-menu-vertical-demo" router>
                 <el-menu-item-group title="书目下载">
                     <el-menu-item v-for="(bookTitle, key, index) in book_list" :index="`/download/${key}`" :key="index">{{ bookTitle.bookTitle }}</el-menu-item>
                 </el-menu-item-group>

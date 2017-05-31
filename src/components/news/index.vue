@@ -1,7 +1,7 @@
 <template>
     <div class="component">
         <div class="leftList">
-            <el-menu default-active="/news" class="el-menu-vertical-demo" router>
+            <el-menu :default-active="`/news/${this.$route.params.id}`" class="el-menu-vertical-demo" router>
                 <el-menu-item-group title="图书分类">
                     <el-menu-item v-for="(news_warp, key, index) in news_type" :index="`/news/${key}`" :key="index">{{ news_warp.newstype }}</el-menu-item>
                 </el-menu-item-group>

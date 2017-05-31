@@ -1,7 +1,7 @@
 <template>
     <div class="component">
         <div class="leftList">
-            <el-menu default-active="/newArivals" class="el-menu-vertical-demo" router>
+            <el-menu :default-active="`/newArivals/${this.$route.params.id}`" class="el-menu-vertical-demo" router>
                 <el-menu-item-group title="图书分类">
                     <el-menu-item v-for="(book_warp, key, index) in book_type" :index="`/newArivals/${key}`" :key="index">{{ book_warp.bookTitle }}</el-menu-item>
                 </el-menu-item-group>
