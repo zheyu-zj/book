@@ -13,16 +13,25 @@
                             <i class="el-icon-menu contact">
                                 <img src="./assets/images/contact@2x.jpg" alt="">
                             </i>联系方式
+
+
+
                         </el-menu-item>
                         <el-menu-item index="/news">
                             <i class="el-icon-menu online">
                                 <img src="./assets/images/online@2x.jpg" alt="">
                             </i>在线留言
+
+
+
                         </el-menu-item>
                         <el-menu-item index="/contact">
                             <i class="el-icon-menu enshrine">
                                 <img src="./assets/images/enshrine@2x.jpg" alt="">
                             </i>加入收藏
+
+
+
                         </el-menu-item>
                     </el-menu>
                 </el-col>
@@ -84,6 +93,7 @@
 
 <script>
     import {mapState} from 'vuex';
+    import {allData} from '../mock/data';
 
     const ERR_OK = 200;
     export default {
@@ -96,6 +106,7 @@
         },
         methods: {
             fetchData(){
+                console.log(this.book_list)
                 this.$store.dispatch('get_a_list');
                 this.$store.dispatch('getNewBook');
                 this.$store.dispatch('getNews');
@@ -108,56 +119,38 @@
             '$route': 'fetchData'
         },
     }
-
-    import { normalize, schema } from 'normalizr';
-    import indexJson from './index'
-    // 原始数据
-    const mydata = {
-        "id": "123",
-        "author": {
-            "id": "1",
-            "name": "Paul"
-        },
-        "title": "My awesome blog post",
-        "comments": [
-            {
-                "id": "324",
-                "commenter": {
-                    "id": "2",
-                    "name": "Nicole"
-                }
-            }
-        ]
-    };
-    // 定义一个用户模式
-    const length = new schema.Entity('lengths');
-//    const bookTitle = new schema.Entity('bookTitles');
-
-    // 定义你的评论模式
-//    const comment = new schema.Entity('comments', {
-//        commenter: user
-//    });
-
-    // 定义你的文章
-    const article = [ length ];
-
-    // 开始规范化
-    const normalizedData = normalize(indexJson, article);
-    console.log(normalizedData)
-    const data = [ { id: '123', name: 'Jim' }, { id: '456', name: 'Jane' } ];
-//    const userSchema = new schema.Entity('users');
-//
-//    const userListSchema = new schema.Array(userSchema);
-//    // or use shorthand syntax:
-////    const userListSchema = [ userSchema ];
-//
-//    const normalizedData = normalize(indexJson, userListSchema);
-//    console.log(normalizedData)
+    //范式化数据JSON
+    //    import { normalize, schema } from 'normalizr';
+    //    import indexJson from './index'
+    //    // 原始数据
+    //    const mydata = {
+    //        "id": "123",
+    //        "author": {
+    //            "id": "1",
+    //            "name": "Paul"
+    //        },
+    //        "title": "My awesome blog post",
+    //        "comments": [
+    //            {
+    //                "id": "324",
+    //                "commenter": {
+    //                    "id": "2",
+    //                    "name": "Nicole"
+    //                }
+    //            }
+    //        ]
+    //    };
+    //    // 定义一个用户模式
+    //    const length = new schema.Entity('lengths');
+    //
+    //    // 定义你的文章
+    //    const article = [ length ];
+    //
+    //    // 开始规范化
+    //    const normalizedData = normalize(indexJson, article);
+    //    const data = [ { id: '123', name: 'Jim' }, { id: '456', name: 'Jane' } ];
 </script>
 
 <style lang="scss">
     @import "assets/sass/main";
 </style>
-
-https://ofybqrgr4.qnssl.com/css/trade.css
-https://ofybqrgr4.qnssl.com/js/trade.js

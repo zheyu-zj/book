@@ -10,7 +10,7 @@ Vue.use(VueAxios, axios);
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 
 import router from './router'
