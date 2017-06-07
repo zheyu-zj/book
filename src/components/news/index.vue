@@ -3,14 +3,14 @@
         <div class="leftList">
             <el-menu :default-active="`/news/${this.$route.params.id}`" class="el-menu-vertical-demo" router>
                 <el-menu-item-group title="图书分类">
-                    <el-menu-item v-for="(news_warp, key, index) in news_type" :index="`/news/${key}`" :key="index">{{ news_warp.newstype }}</el-menu-item>
+                    <el-menu-item v-for="(news_warp, key, index) in nav[2]" :index="`/news/${key}`" :key="index">{{ news_warp }}</el-menu-item>
                 </el-menu-item-group>
             </el-menu>
         </div>
         <div class="newsRight">
             <h2>公司新闻</h2>
             <ul>
-                <li v-for="newsContent in newswarp">
+                <li v-for="newsContent in newswarp[$route.params.id]">
                     <h4>{{ newsContent.title }}</h4>
                     <div>
                         <time>{{ newsContent.time }}</time>
@@ -24,43 +24,7 @@
             </ul>
             <!--分页-->
             <br>
-            <br>
             <div class="block">
-                <span class="demonstration">显示总数</span>
-                <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page.sync="currentPage1"
-                        :page-size="100"
-                        layout="total, prev, pager, next"
-                        :total="200">
-                </el-pagination>
-            </div>
-            <div class="block">
-                <span class="demonstration">调整每页显示条数</span>
-                <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page.sync="currentPage2"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
-                        layout="sizes, prev, pager, next"
-                        :total="1000">
-                </el-pagination>
-            </div>
-            <div class="block">
-                <span class="demonstration">直接前往</span>
-                <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page.sync="currentPage3"
-                        :page-size="100"
-                        layout="prev, pager, next, jumper"
-                        :total="1000">
-                </el-pagination>
-            </div>
-            <div class="block">
-                <span class="demonstration">完整功能</span>
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
@@ -81,7 +45,7 @@
     export default {
         data() {
             return {
-                newswarp: '',
+//                newswarp: '',
                 input: '',
                 radio: '1',
                 currentPage1: 5,
@@ -92,7 +56,8 @@
         },
         computed: {
             ...mapState({
-                news_type: state => state.bookList.news
+                nav: state => state.bookList.downloadTheBibliography,
+                newswarp: state => state.bookList.newBookShelves
             })
         },
         created() {
@@ -100,12 +65,13 @@
         },
         methods: {
             fetchData() {
-                let storage = window.localStorage;
-                if(storage.news){
-                    this.newswarp = JSON.parse(storage.getItem('news'))[this.$route.params.id].data;
-                }else{
-                    this.newswarp = this.book_list[this.$route.params.id].data;
-                }
+                this.$store.dispatch('getNewBook');
+//                let storage = window.localStorage;
+//                if(storage.news){
+//                    this.newswarp = JSON.parse(storage.getItem('newBookShelves'))[this.$route.params.id];
+//                }else{
+//                    this.newswarp = this.book_list[this.$route.params.id].data;
+//                }
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);

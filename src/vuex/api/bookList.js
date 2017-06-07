@@ -10,10 +10,11 @@ function getNewBook() {
 
     return axios.get('/json/allData.json');
 }
-function getNews() {
-    return axios.get('/json/news.json');
-}
+// function getNews() {
+//     return axios.get('/json/news.json');
+// }
 
 export default {
-    get_a_list,getNewBook,getNews
+    get_a_list,getNewBook
+    // getNews
 }

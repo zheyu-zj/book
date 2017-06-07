@@ -14,23 +14,17 @@
                                 <img src="./assets/images/contact@2x.jpg" alt="">
                             </i>联系方式
 
-
-
                         </el-menu-item>
                         <el-menu-item index="/news">
                             <i class="el-icon-menu online">
                                 <img src="./assets/images/online@2x.jpg" alt="">
                             </i>在线留言
 
-
-
                         </el-menu-item>
                         <el-menu-item index="/contact">
                             <i class="el-icon-menu enshrine">
                                 <img src="./assets/images/enshrine@2x.jpg" alt="">
                             </i>加入收藏
-
-
 
                         </el-menu-item>
                     </el-menu>
@@ -42,15 +36,15 @@
                     <el-menu-item class="el-col el-col-4" index="/Company">公司概况</el-menu-item>
                     <el-submenu class="el-col el-col-4" index="/download">
                         <template slot="title">书目下载</template>
-                        <el-menu-item v-for="(bookTitle, key, index) in book_list" :index="`/download/${key}`" :key="index">{{ bookTitle.bookTitle }}</el-menu-item>
+                        <el-menu-item v-for="(bookTitle, key, index) in nav[0]" :index="`/download/${key}`" :key="index">{{ bookTitle }}</el-menu-item>
                     </el-submenu>
                     <el-submenu class="el-col el-col-4" index="/newArivals">
                         <template slot="title">新书上架</template>
-                        <el-menu-item v-for="(bookTitle, key, index) in book_type" :index="`/newArivals/${key}`" :key="index">{{ bookTitle.bookTitle }}</el-menu-item>
+                        <el-menu-item v-for="(bookTitle, key, index) in nav[1]" :index="`/newArivals/${key}`" :key="index">{{ bookTitle }}</el-menu-item>
                     </el-submenu>
                     <el-submenu class="el-col el-col-4" index="/news">
                         <template slot="title">新闻动态</template>
-                        <el-menu-item v-for="(bookTitle, key, index) in news_type" :index="`/news/${key}`" :key="index">{{ bookTitle.newstype }}</el-menu-item>
+                        <el-menu-item v-for="(bookTitle, key, index) in nav[2]" :index="`/news/${key}`" :key="index">{{ bookTitle }}</el-menu-item>
                     </el-submenu>
                     <el-menu-item class="el-col el-col-4" index="/contact/online">联系我们</el-menu-item>
                 </el-menu>
@@ -93,23 +87,38 @@
 
 <script>
     import {mapState} from 'vuex';
-    import {allData} from '../mock/data';
 
-    const ERR_OK = 200;
     export default {
+        data(){
+            return {
+                "book_list":{},
+                "book_type":{},
+                "news_type":{}
+            }
+        },
         computed: {
             ...mapState({
-                book_list: state => state.bookList.downloadTheBibliography,
-                book_type: state => state.bookList.newBookShelves,
-                news_type: state => state.bookList.news
+                nav: state => state.bookList.downloadTheBibliography,
             })
         },
         methods: {
             fetchData(){
-                console.log(this.book_list)
                 this.$store.dispatch('get_a_list');
-                this.$store.dispatch('getNewBook');
-                this.$store.dispatch('getNews');
+//                this.$store.dispatch('getNews');
+//                this.book_list = this.nav[0].list;
+//                this.book_type = this.nav[1].list;
+//                this.news_type = this.nav[2].list;
+
+//                let storage = window.localStorage;
+//                if(storage.downloadTheBibliography){
+//                    this.book_list = JSON.parse(storage.getItem('downloadTheBibliography'))[0].list;
+//                    this.book_type = JSON.parse(storage.getItem('downloadTheBibliography'))[1].list;
+//                    this.news_type = JSON.parse(storage.getItem('downloadTheBibliography'))[2].list;
+//                }else{
+//                    this.book_content = this.book_list[this.$route.params.id].data;
+//                    this.total = this.book_content.length;
+//                    console.log(this.total)
+//                }
             },
         },
         created() {

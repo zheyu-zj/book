@@ -3,7 +3,7 @@
         <div class="leftList">
             <el-menu :default-active="`/newArivals/${this.$route.params.id}`" class="el-menu-vertical-demo" router>
                 <el-menu-item-group title="图书分类">
-                    <el-menu-item v-for="(book_warp, key, index) in book_type" :index="`/newArivals/${key}`" :key="index">{{ book_warp.bookTitle }}</el-menu-item>
+                    <el-menu-item v-for="(book_warp, key, index) in nav[1]" :index="`/newArivals/${key}`" :key="index">{{ book_warp }}</el-menu-item>
                 </el-menu-item-group>
             </el-menu>
             <div class="newArivals_warp">
@@ -25,7 +25,7 @@
         </div>
         <div class="newArivalsRight">
             <ul>
-                <li v-for="bookContent in bookWarp">
+                <li v-for="bookContent in bookWarp[$route.params.id]">
                     <img :src="bookContent.src" alt="">
                     <div>
                         <h6>{{ bookContent.title }}</h6>
@@ -46,24 +46,26 @@
     export default {
         data() {
             return {
-                bookWarp: {},
+//                bookWarp: {},
                 input: '',
                 radio: '1'
             }
         },
         computed: {
             ...mapState({
-                book_type: state => state.bookList.newBookShelves
+                nav: state => state.bookList.downloadTheBibliography,
+                bookWarp: state => state.bookList.newBookShelves
             })
         },
         methods: {
             fetchData() {
-                let storage = window.localStorage;
-                if (storage.newBookShelves) {
-                    this.bookWarp = JSON.parse(storage.getItem('newBookShelves'))[this.$route.params.id].data;
-                } else {
-                    this.bookWarp = this.book_type[this.$route.params.id].data;
-                }
+                this.$store.dispatch('getNewBook');
+//                let storage = window.localStorage;
+//                if (storage.newBookShelves) {
+//                this.bookWarp = JSON.parse(storage.getItem('newBookShelves'))[this.$route.params.id];
+//                } else {
+//                    this.bookWarp = this.book_type[this.$route.params.id].data;
+//                }
             }
         },
         created() {
